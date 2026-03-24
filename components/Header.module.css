@@ -1,0 +1,94 @@
+.header {
+  position: sticky; top: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 48px;
+  background: var(--surface);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  transition: all 0.3s ease;
+}
+
+.left { display: flex; align-items: baseline; gap: 14px; }
+
+.logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px; font-weight: 900;
+  color: var(--ink); letter-spacing: -0.5px;
+}
+
+.tagline {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px; color: var(--muted);
+  letter-spacing: 2px; text-transform: uppercase;
+}
+
+.right { display: flex; align-items: center; gap: 20px; }
+
+/* Theme Toggle styles */
+.themeToggle {
+  background: var(--border);
+  width: 52px; height: 28px;
+  border-radius: 99px; border: none;
+  cursor: pointer; position: relative;
+  padding: 4px; display: flex; align-items: center;
+  transition: background 0.3s;
+}
+.toggleCircle {
+  width: 20px; height: 20px;
+  background: var(--bg);
+  color: var(--ink);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  transition: transform 0.3s ease, background 0.3s;
+  box-shadow: 0 2px 4px var(--shadow);
+}
+.toggleCircle svg { width: 12px; height: 12px; }
+.toggleDark { transform: translateX(24px); }
+
+/* Wallet UI styles */
+.walletGroup { display: flex; align-items: center; gap: 12px; }
+
+.walletDisplay {
+  border: 1px solid var(--accent3);
+  background: transparent;
+  padding: 8px 16px; border-radius: 8px;
+  display: flex; align-items: center; gap: 12px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 14px; color: var(--accent3);
+  transition: all 0.2s;
+}
+
+.dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--accent3);
+  box-shadow: 0 0 8px var(--accent3);
+}
+
+.logoutBtn {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  width: 40px; height: 40px;
+  border-radius: 8px; color: var(--muted);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: all 0.2s;
+}
+.logoutBtn:hover {
+  background: var(--bg); color: var(--accent); border-color: var(--accent);
+}
+.logoutBtn svg { width: 18px; height: 18px; }
+
+.walletBtn {
+  font-family: 'IBM Plex Mono', monospace; font-size: 12px;
+  background: var(--accent); color: white;
+  border: none; padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer; transition: all 0.2s; font-weight: 600;
+}
+.walletBtn:hover { transform: translateY(-1px); box-shadow: 0 4px 12px var(--shadow); }
+.walletBtn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+@media(max-width: 600px) {
+  .header { padding: 16px 20px; }
+  .tagline { display: none; }
+  .right { gap: 10px; }
+}

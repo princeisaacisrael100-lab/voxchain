@@ -1,0 +1,60 @@
+.box {
+  background: var(--surface); border: 1.5px solid var(--border); padding: 28px;
+  position: sticky; top: 24px;
+}
+.boxTitle {
+  font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700;
+  color: var(--ink); margin-bottom: 24px;
+  padding-bottom: 14px; border-bottom: 1px solid var(--border);
+}
+
+.field { margin-bottom: 18px; }
+.label {
+  display: block; font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 8px;
+}
+.input, .textarea {
+  width: 100%; background: var(--bg); border: 1.5px solid var(--border);
+  color: var(--ink); padding: 10px 14px;
+  font-family: 'Inter', sans-serif; font-size: 14px;
+  outline: none; transition: border-color 0.2s; resize: none;
+}
+.input:focus, .textarea:focus { border-color: var(--ink); }
+.input::placeholder, .textarea::placeholder { color: var(--muted); }
+
+.optRow {
+  display: flex; align-items: center; gap: 8px; margin-bottom: 8px;
+}
+.optLetter {
+  font-family: 'IBM Plex Mono', monospace; font-size: 11px;
+  font-weight: 600; color: var(--muted); width: 16px; flex-shrink: 0;
+}
+.optRow .input { flex: 1; margin-bottom: 0; }
+.removeBtn {
+  background: none; border: 1.5px solid var(--border);
+  color: var(--muted); width: 32px; height: 38px;
+  cursor: pointer; font-size: 18px; transition: all 0.15s; flex-shrink: 0;
+}
+.removeBtn:hover { border-color: var(--accent); color: var(--accent); }
+
+.addBtn {
+  font-family: 'IBM Plex Mono', monospace; font-size: 11px;
+  background: transparent; border: 1px dashed var(--border);
+  color: var(--muted); padding: 9px; cursor: pointer;
+  width: 100%; transition: all 0.2s; letter-spacing: 0.5px;
+}
+.addBtn:hover { border-color: var(--ink2); color: var(--ink2); }
+
+.submitBtn {
+  width: 100%; padding: 14px; font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px; letter-spacing: 1px; background: var(--ink);
+  color: var(--bg); border: none; cursor: pointer; transition: background 0.2s;
+}
+.submitBtn:hover:not(:disabled) { background: var(--accent2); }
+.submitBtn:disabled { background: var(--border); color: var(--muted); cursor: not-allowed; }
+
+.hint {
+  margin-top: 10px; font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px; color: var(--muted); letter-spacing: 1px; text-align: center;
+}

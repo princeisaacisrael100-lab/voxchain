@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=IBM+Plex+Mono:wght@400;600&family=Inter:wght@300;400;500&display=swap');
+
+:root[data-theme='light'] {
+  --bg:       #f5f0e8;
+  --surface:  #fdfaf4;
+  --border:   #d4c9b0;
+  --ink:      #1a1410;
+  --ink2:     #3d342a;
+  --muted:    #8a7d6b;
+  --accent:   #c0392b;
+  --accent2:  #2c5f8a;
+  --accent3:  #2d7a4f;
+  --gold:     #c9973a;
+  --shadow:   rgba(26,20,16,0.08);
+  --paper-opacity: 0.4;
+}
+
+:root[data-theme='dark'] {
+  --bg:       #0d1117;
+  --surface:  #161b22;
+  --border:   #30363d;
+  --ink:      #e6edf3;
+  --ink2:     #7d8590;
+  --muted:    #484f58;
+  --accent:   #238636; /* GitHub style green */
+  --accent2:  #1f6feb; /* GitHub style blue */
+  --accent3:  #2ea043; /* Success green */
+  --gold:     #d29922;
+  --shadow:   rgba(0,0,0,0.5);
+  --paper-opacity: 0.1;
+}
+
+/* Default is Dark based on image, but original project had Light variables. Let's stick with dark as default for that premium feel. */
+:root {
+  --bg:       #0d1117;
+  --surface:  #161b22;
+  --border:   #30363d;
+  --ink:      #e6edf3;
+  --ink2:     #7d8590;
+  --muted:    #484f58;
+  --accent:   #238636;
+  --accent2:  #1f6feb;
+  --accent3:  #2ea043;
+  --gold:     #d29922;
+  --shadow:   rgba(0,0,0,0.5);
+  --paper-opacity: 0.1;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Subtle paper texture */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none; z-index: 0; opacity: var(--paper-opacity);
+}
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+@keyframes shimmer { to { background-position: -200% 0; } }
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes slideUp { from { transform: translateY(24px); opacity: 0; } to { transform: none; opacity: 1; } }
