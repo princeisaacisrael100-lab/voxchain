@@ -19,5 +19,7 @@ export interface Poll {
   question: string;
   options: string[];
   votes: number[];
-  closed: boolean; // Changed "bool" to "boolean."
+  closed: boolean; 
+  voted: boolean;
+  isCreator: boolean;
 }

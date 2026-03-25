@@ -20,19 +20,20 @@ export function useWallet() {
       }) as string[];
       
       if (accounts.length > 0) {
-        const chainId = await window.ethereum.request({ method: "eth_chainId" }) as string;
-        if (chainId !== SEPOLIA_CHAIN_ID && !silent) {
+        const hexChainId = await window.ethereum.request({ method: "eth_chainId" }) as string;
+        const currentChainId = parseInt(hexChainId, 16);
+        if (currentChainId !== SEPOLIA_CHAIN_ID && !silent) {
           try {
             await window.ethereum.request({
               method: "wallet_switchEthereumChain",
-              params: [{ chainId: SEPOLIA_CHAIN_ID }],
+              params: [{ chainId: `0x${SEPOLIA_CHAIN_ID.toString(16)}` }],
             });
           } catch {
             setError("Please switch to Sepolia in MetaMask.");
             setLoading(false);
             return;
           }
-        } else if (chainId !== SEPOLIA_CHAIN_ID && silent) {
+        } else if (currentChainId !== SEPOLIA_CHAIN_ID && silent) {
           // If silent and wrong chain, we don't auto-connect to avoid annoying the user
           return;
         }

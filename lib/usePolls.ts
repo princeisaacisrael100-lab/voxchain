@@ -28,7 +28,7 @@ export function usePolls() {
           try {
             const deleted = await contract.isDeleted(i);
             if (deleted) continue;
-            const [question, options, votes, active] = await contract.getPoll(i);
+            const [question, options, votes, closed] = await contract.getPoll(i);
             const voted = walletAddress ? await contract.didVote(i, walletAddress) : false;
 
             // Check if current user is creator by trying to read poll struct creator field
@@ -49,7 +49,7 @@ export function usePolls() {
               question,
               options: [...options],
               votes: (votes as ethers.BigNumber[]).map((v) => v.toNumber()),
-              active,
+              closed,
               voted,
               isCreator,
             });
