@@ -101,6 +101,58 @@
 .pollsSection { padding-right: 48px; border-right: 1px solid var(--border); }
 @media(max-width: 900px) { .pollsSection { padding-right: 0; border-right: none; border-bottom: 1px solid var(--border); padding-bottom: 40px; margin-bottom: 40px; } }
 
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+}
+
+.sectionTitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  font-weight: 900;
+  color: var(--ink);
+}
+
+.refreshBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: all 0.15s;
+  letter-spacing: 0.5px;
+  border-radius: 2px;
+}
+
+.refreshBtn:hover {
+  border-color: var(--ink2);
+  color: var(--ink2);
+  background: var(--surface);
+}
+
+.refreshIcon {
+  font-size: 14px;
+  display: inline-block;
+  line-height: 1;
+}
+
+.refreshing {
+  animation: rotate 1s linear infinite;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
 .filterRow {
   display: flex; align-items: center; gap: 4px;
   margin-bottom: 28px; padding-bottom: 16px;

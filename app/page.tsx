@@ -179,6 +179,25 @@ export default function Home() {
         {/* Left: polls */}
         <section className={styles.pollsSection}>
 
+          {/* Section title & Refresh */}
+          <div className={styles.sectionHeader}>
+            <h2 className={styles.sectionTitle}>Active Polls</h2>
+            <button
+              className={styles.refreshBtn}
+              onClick={() => refresh(wallet.address)}
+              disabled={loading}
+              title="Reload all polls from the blockchain"
+            >
+              <span className={`${styles.refreshIcon} ${loading ? styles.refreshing : ""}`}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="14" height="14">
+                  <path d="M23 4v6h-6" />
+                  <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10" />
+                </svg>
+              </span>
+              Refresh
+            </button>
+          </div>
+
           {/* Filter tabs */}
           <div className={styles.filterRow}>
             <span className={styles.filterLabel}>Showing</span>
