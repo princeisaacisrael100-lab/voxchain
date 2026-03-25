@@ -18,16 +18,16 @@ export default function PollCard({ poll, walletAddress, onVote, onClose, onDelet
   const winnerIndex = total > 0 ? poll.votes.indexOf(maxVotes) : -1;
 
   return (
-    <article className={`${styles.card} ${poll.closed ? styles.closed : ""}`}>
+    <article className={`${styles.card} ${!poll.active ? styles.closed : ""}`}>
       {/* Header row */}
       <div className={styles.cardHeader}>
         <div className={styles.pollMeta}>
           <span className={styles.pollNum}>#{String(poll.id).padStart(3, "0")}</span>
-          <span className={`${styles.statusPill} ${!poll.closed ? styles.active : styles.inactive}`}>
-            {!poll.closed ? "Open" : "Closed"}
+          <span className={`${styles.statusPill} ${poll.active ? styles.active : styles.inactive}`}>
+            {poll.active ? "Open" : "Closed"}
           </span>
         </div>
-        {walletAddress && (
+        {poll.isCreator && (
           <button className={styles.moreBtn} onClick={() => setShowActions(!showActions)}>
             ···
           </button>
@@ -35,9 +35,9 @@ export default function PollCard({ poll, walletAddress, onVote, onClose, onDelet
       </div>
 
       {/* Actions dropdown */}
-      {showActions && walletAddress && (
+      {showActions && poll.isCreator && (
         <div className={styles.actionsMenu}>
-          {!poll.closed && (
+          {poll.active && (
             <button className={styles.actionItem} onClick={() => { onClose(poll.id); setShowActions(false); }}>
               🔒 Close Poll
             </button>
@@ -95,7 +95,7 @@ export default function PollCard({ poll, walletAddress, onVote, onClose, onDelet
 
         {poll.voted ? (
           <span className={styles.votedBadge}>✓ Voted</span>
-        ) : !poll.closed ? (
+        ) : poll.active ? (
           <button className={styles.voteBtn} onClick={() => onVote(poll.id)}>
             Cast Vote →
           </button>

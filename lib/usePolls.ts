@@ -28,28 +28,26 @@ export function usePolls() {
           try {
             const deleted = await contract.isDeleted(i);
             if (deleted) continue;
-            const [question, options, votes, closed] = await contract.getPoll(i);
+            const [question, options, votes, active] = await contract.getPoll(i);
             const voted = walletAddress ? await contract.didVote(i, walletAddress) : false;
 
-            // Check if current user is creator by trying to read poll struct creator field
-            // We check via the polls public mapping
+            // Check if current user is creator
             let isCreator = false;
-            try {
-              const raw = await provider.call({
-                to: CONTRACT_ADDRESS,
-                data: contract.interface.encodeFunctionData("polls", [i]),
-              });
-              // creator is the 4th field, at offset 3*32 bytes after dynamic data
-              // Easier: just compare via event logs or store creator separately
-              // For now we skip — deletePoll button shown only to creator
-            } catch {}
+            if (walletAddress) {
+              try {
+                const pollData = await contract.polls(i);
+                isCreator = pollData.creator.toLowerCase() === walletAddress.toLowerCase();
+              } catch (e) {
+                console.warn("Could not check creator for poll", i, e);
+              }
+            }
 
             loaded.push({
               id: i,
               question,
               options: [...options],
               votes: (votes as ethers.BigNumber[]).map((v) => v.toNumber()),
-              closed,
+              active,
               voted,
               isCreator,
             });

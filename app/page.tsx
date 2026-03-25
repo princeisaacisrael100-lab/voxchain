@@ -99,8 +99,8 @@ export default function Home() {
   };
 
  const filtered = polls.filter((p) => {
-  if (filter === "open") return !p.closed;   // Use !p.closed (Not closed)
-  if (filter === "closed") return p.closed;  // Use p.closed
+  if (filter === "open") return p.active;
+  if (filter === "closed") return !p.active;
   return true;
 });
 

@@ -6,12 +6,13 @@ export const CONTRACT_ABI = [
   "function vote(uint256 id, uint256 option) external",
   "function closePoll(uint256 id) external",
   "function deletePoll(uint256 id) external",
-  "function getPoll(uint256 id) external view returns (string memory question, string[] memory options, uint256[] memory votes, bool closed, bool exists)",
+  "function getPoll(uint256 id) external view returns (string memory question, string[] memory options, uint256[] memory votes, bool active, bool exists)",
   "function totalPolls() external view returns (uint256)",
   "function totalVotes(uint256 id) external view returns (uint256)",
   "function didVote(uint256 id, address voter) external view returns (bool)",
   "function isDeleted(uint256 id) external view returns (bool)",
   "function winner(uint256 id) external view returns (uint256 winnerIndex, uint256 winnerVotes)",
+  "function polls(uint256 id) external view returns (string memory question, address creator, bool exists, bool active, uint256 optionCount)",
 ] as const;
 
 export interface Poll {
@@ -19,7 +20,7 @@ export interface Poll {
   question: string;
   options: string[];
   votes: number[];
-  closed: boolean; 
+  active: boolean; 
   voted: boolean;
   isCreator: boolean;
 }
