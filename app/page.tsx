@@ -98,11 +98,11 @@ export default function Home() {
     }
   };
 
-  const filtered = polls.filter((p) => {
-    if (filter === "open") return p.active;
-    if (filter === "closed") return !p.active;
-    return true;
-  });
+ const filtered = polls.filter((p) => {
+  if (filter === "open") return !p.closed;   // Use !p.closed (Not closed)
+  if (filter === "closed") return p.closed;  // Use p.closed
+  return true;
+});
 
   const totalVotes = polls.reduce((s, p) => s + p.votes.reduce((a, b) => a + b, 0), 0);
   const myVoteCount = polls.filter((p) => p.voted).length;
