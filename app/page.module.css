@@ -172,10 +172,18 @@
 .filterTab:hover { border-color: var(--ink2); color: var(--ink2); }
 .activeTab { background: var(--ink) !important; color: var(--bg) !important; border-color: var(--ink) !important; }
 
-.pollsList { display: flex; flex-direction: column; gap: 20px; }
+.pollsList { 
+  display: grid; 
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+  gap: 24px; 
+}
 
 /* ── Skeletons ──────────────────────────────────────── */
-.skeletons { display: flex; flex-direction: column; gap: 20px; }
+.skeletons { 
+  display: grid; 
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+  gap: 24px; 
+}
 .skeletonCard { background: var(--surface); border: 1.5px solid var(--border); padding: 28px; }
 .skel {
   background: linear-gradient(90deg, var(--border) 25%, var(--bg) 50%, var(--border) 75%);
